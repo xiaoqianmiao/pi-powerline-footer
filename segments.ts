@@ -283,7 +283,10 @@ const contextPctSegment: StatusLineSegment = {
     const window = ctx.contextWindow;
 
     const autoIcon = ctx.autoCompactEnabled && icons.auto ? ` ${icons.auto}` : "";
-    const text = `${pct.toFixed(1)}%/${formatTokens(window)}${autoIcon}`;
+    const filled = Math.round(pct / 10);
+    const empty = 10 - filled;
+    const bar = "▓".repeat(filled) + "░".repeat(empty);
+    const text = `${bar} ${pct.toFixed(1)}%${autoIcon}`;
 
     // Icon outside color, text inside - use semantic colors for thresholds
     let content: string;
