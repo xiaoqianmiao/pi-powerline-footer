@@ -295,7 +295,7 @@ const contextPctSegment: StatusLineSegment = {
     } else if (pct > 50) {
       content = withIcon(icons.context, color(ctx, "contextWarn", text));
     } else if (pct > 20) {
-      content = withIcon(icons.context, color(ctx, "success", text));
+      content = withIcon(icons.context, color(ctx, "#89d281", text));
     } else {
       content = withIcon(icons.context, color(ctx, "context", text));
     }
