@@ -286,14 +286,16 @@ const contextPctSegment: StatusLineSegment = {
     const filled = Math.round(pct / 10);
     const empty = 10 - filled;
     const bar = "▓".repeat(filled) + "░".repeat(empty);
-    const text = `${bar} ${pct.toFixed(1)}%${autoIcon}`;
+    const text = `${bar} ${pct.toFixed(1)}%/${formatTokens(window)}${autoIcon}`;
 
-    // Icon outside color, text inside - use semantic colors for thresholds
+    // 根据使用率选择颜色：<20% 正常，20-50% 绿色，50-80% 黄色，>80% 红色
     let content: string;
-    if (pct > 90) {
+    if (pct > 80) {
       content = withIcon(icons.context, color(ctx, "contextError", text));
-    } else if (pct > 70) {
+    } else if (pct > 50) {
       content = withIcon(icons.context, color(ctx, "contextWarn", text));
+    } else if (pct > 20) {
+      content = withIcon(icons.context, color(ctx, "context", text));
     } else {
       content = withIcon(icons.context, color(ctx, "context", text));
     }
