@@ -288,14 +288,14 @@ const contextPctSegment: StatusLineSegment = {
     const bar = "▓".repeat(filled) + "░".repeat(empty);
     const text = `${bar} ${pct.toFixed(1)}%/${formatTokens(window)}${autoIcon}`;
 
-    // 根据使用率选择颜色：<20% 正常，20-50% 绿色，50-80% 黄色，>80% 红色
+    // 根据使用率选择颜色：<20% 低色，20-50% 绿色，50-80% 黄色，>80% 红色
     let content: string;
     if (pct > 80) {
       content = withIcon(icons.context, color(ctx, "contextError", text));
     } else if (pct > 50) {
       content = withIcon(icons.context, color(ctx, "contextWarn", text));
     } else if (pct > 20) {
-      content = withIcon(icons.context, color(ctx, "context", text));
+      content = withIcon(icons.context, color(ctx, "success", text));
     } else {
       content = withIcon(icons.context, color(ctx, "context", text));
     }
